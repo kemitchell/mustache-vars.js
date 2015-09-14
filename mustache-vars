@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+process.stdout.write(
+  JSON.stringify(
+    require('./')(
+      require('fs').readFileSync('/dev/stdin')
+        .toString())) + '\n')

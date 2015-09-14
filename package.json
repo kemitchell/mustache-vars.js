@@ -1,0 +1,19 @@
+{
+  "name": "mustache-vars",
+  "description": "identify the variables used by a Mustache template",
+  "version": "0.0.0",
+  "author": "Kyle E. Mitchell <kyle@kemitchell.com> (https://kemitchell.com/)",
+  "bin": "mustache-vars",
+  "license": "MIT",
+  "repository": "kemitchell/mustache-vars.js",
+  "dependencies": {
+    "mustache": "^2.1.3"
+  },
+  "devDependencies": {
+    "defence-cli": "^1.0.1",
+    "replace-require-self": "^1.0.0"
+  },
+  "scripts": {
+    "test": "defence -i javascript README.md | replace-require-self | node"
+  }
+}
