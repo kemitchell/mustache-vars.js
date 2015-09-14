@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-process.stdout.write(
-  JSON.stringify(
-    require('./')(
-      require('fs').readFileSync('/dev/stdin')
-        .toString())) + '\n')
+var fs = require('fs')
+var vars = require('./')
+
+var template = fs.readFileSync('/dev/stdin').toString()
+process.stdout.write(vars(template).join('\n') + '\n')

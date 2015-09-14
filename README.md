@@ -2,7 +2,8 @@
 
 ```shellsession
 $ mustache-vars <<< "{{B}} and {{A}}"
-["A","B"]
+A
+B
 ```
 
 # JavaScript
