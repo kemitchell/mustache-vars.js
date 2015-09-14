@@ -4,8 +4,6 @@
   "version": "0.1.0",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (https://kemitchell.com/)",
   "bin": "mustache-vars",
-  "license": "MIT",
-  "repository": "kemitchell/mustache-vars.js",
   "dependencies": {
     "mustache": "^2.1.3"
   },
@@ -13,6 +11,8 @@
     "defence-cli": "^1.0.1",
     "replace-require-self": "^1.0.0"
   },
+  "license": "MIT",
+  "repository": "kemitchell/mustache-vars.js",
   "scripts": {
     "test": "defence -i javascript README.md | replace-require-self | node"
   }
