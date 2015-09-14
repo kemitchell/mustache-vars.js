@@ -12,6 +12,15 @@ function reducer(result, ast) {
   return result }
 
 function mustacheVars(template) {
+  var prior = undefined
   return mustache.parse(template)
     .reduce(reducer, [ ])
-    .sort() }
+    .sort()
+    // Remove duplicates
+    .reduce(
+      function(result, element) {
+        if (prior === undefined || prior !== element ) {
+          result.push(element) }
+        prior = element
+        return result },
+      [ ])}

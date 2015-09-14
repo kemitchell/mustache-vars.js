@@ -14,6 +14,8 @@ var assert = require('assert')
 
 assert.deepEqual(vars('{{A}}'), [ 'A' ])
 
+assert.deepEqual(vars('{{A}} and {{A}}'), [ 'A' ])
+
 assert.deepEqual(vars('{{{A}}}'), [ 'A' ])
 
 assert.deepEqual(vars('{{& A}}'), [ 'A' ])
