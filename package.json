@@ -1,6 +1,6 @@
 {
   "name": "mustache-vars",
-  "description": "identify the variables used by a Mustache template",
+  "description": "list variables used by a Mustache template",
   "version": "0.0.0",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (https://kemitchell.com/)",
   "bin": "mustache-vars",
