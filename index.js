@@ -2,19 +2,28 @@ var mustache = require('mustache')
 
 module.exports = mustacheVars
 
-function reducer(result, ast) {
+function formatKeys(keys) {
+  return keys.join('\t') }
+
+function reducer(result, ast, context) {
   var first = ast[0]
   if (first === 'name' || first === '&' || first === '>') {
-    result.push(ast[1]) }
+    result.push(formatKeys(context.concat(ast[1]))) }
   else if (first === '#' || first === '^') {
-    result.push(ast[1])
-    ast[4].reduce(reducer, result) }
+    var childContext = context.concat(ast[1])
+    result.push(formatKeys(childContext))
+    ast[4].reduce(
+      function(result, element) {
+        return reducer(result, element, childContext) },
+      result) }
   return result }
 
 function mustacheVars(template) {
   var prior = undefined
   return mustache.parse(template)
-    .reduce(reducer, [ ])
+    .reduce(function(result, element) {
+      return reducer(result, element, [ ]) },
+      [ ])
     .sort()
     // Remove duplicates
     .reduce(

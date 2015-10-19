@@ -24,7 +24,7 @@ assert.deepEqual(vars('{{> A}}'), [ 'A' ])
 
 assert.deepEqual(vars('{{#A}}some text{{/A}}'), [ 'A' ])
 
-assert.deepEqual(vars('{{#A}}some {{B}} text{{/A}}'), [ 'A', 'B' ])
+assert.deepEqual(vars('{{#A}}some {{B}} text{{/A}}'), [ 'A', 'A\tB' ])
 
-assert.deepEqual(vars('{{^A}}some {{B}} text{{/A}}'), [ 'A', 'B' ])
+assert.deepEqual(vars('{{^A}}some {{B}} text{{/A}}'), [ 'A', 'A\tB' ])
 ```
