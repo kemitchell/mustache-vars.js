@@ -1,35 +1,36 @@
 var mustache = require('mustache')
 
-module.exports = mustacheVars
+function formatKeys (keys) {
+  return keys.join('\t')
+}
 
-function formatKeys(keys) {
-  return keys.join('\t') }
-
-function reducer(result, ast, context) {
+function reducer (result, ast, context) {
   var first = ast[0]
   if (first === 'name' || first === '&' || first === '>') {
-    result.push(formatKeys(context.concat(ast[1]))) }
-  else if (first === '#' || first === '^') {
+    result.push(formatKeys(context.concat(ast[1])))
+  } else if (first === '#' || first === '^') {
     var childContext = context.concat(ast[1])
     result.push(formatKeys(childContext))
-    ast[4].reduce(
-      function(result, element) {
-        return reducer(result, element, childContext) },
-      result) }
-  return result }
+    ast[4].reduce(function (result, element) {
+      return reducer(result, element, childContext)
+    }, result)
+  }
+  return result
+}
 
-function mustacheVars(template) {
+module.exports = function (template) {
   var prior = undefined
   return mustache.parse(template)
-    .reduce(function(result, element) {
-      return reducer(result, element, [ ]) },
-      [ ])
+    .reduce(function (result, element) {
+      return reducer(result, element, [])
+    }, [])
     .sort()
     // Remove duplicates
-    .reduce(
-      function(result, element) {
-        if (prior === undefined || prior !== element ) {
-          result.push(element) }
-        prior = element
-        return result },
-      [ ])}
+    .reduce(function (result, element) {
+      if (prior === undefined || prior !== element) {
+        result.push(element)
+      }
+      prior = element
+      return result
+    }, [])
+}
